@@ -82,77 +82,77 @@ bool Widget:: judgeWin(int row,int col){
     r=row,c=col;
     //11,11
     for(int i=0;i<5;i++){
-        if(a[row][col]==a[++row][++col]&&a[row][col]!=2)
+        if(a[row][col]==a[++row][++col])
             count++;
     }
 
     if(count==4) return true;
     count=0;
     row=r,col=c;
-    //9,9
-    for(int i=0;i<5;i++){
-        if(a[row][col]==a[--row][--col]&&a[row][col]!=2)
+    //9,9左上
+    for(int i=0;i<4&&row>=0&&col>=0;i++){
+        if(a[row][col]==a[--row][--col])
             count++;
     }
     if(count==4) return true;
       count=0;
       row=r,col=c;
     //10,11
-    for(int i=0;i<5;i++){
-        if(a[row][col]==a[row][++col]&&a[row][col]!=2)
+    for(int i=0;i<4&&col<21;i++){
+        if(a[row][col]==a[row][++col])
             count++;
     }
     if(count==4) return true;
       count=0;
       row=r,col=c;
     //10,9
-    for(int i=0;i<5;i++){
-        if(a[row][col]==a[row][--col]&&a[row][col]!=2)
+    for(int i=0;i<4&&col>=0;i++){
+        if(a[row][col]==a[row][--col])
             count++;
     }
     if(count==4) return true;
     count=0;
     row=r,col=c;
     //11,10
-    for(int i=0;i<5;i++){
-        if(a[row][col]==a[++row][col]&&a[row][col]!=2)
+    for(int i=0;i<4&&row<21;i++){
+        if(a[row][col]==a[++row][col])
             count++;
     }
     if(count==4) return true;
       row=r,col=c;
       count=0;
     //9,10
-    for(int i=0;i<5;i++){
-        if(a[row][col]==a[--row][col]&&a[row][col]!=2)
+    for(int i=0;i<4&&row>=0;i++){
+        if(a[row][col]==a[--row][col])
             count++;
     }
     if(count==4) return true;
       row=r,col=c;
       count=0;
     //9,11
-    for(int i=0;i<5;i++){
-        if(a[row][col]==a[--row][++col]&&a[row][col]!=2)
+    for(int i=0;i<4&&row>=0&&col<21;i++){
+        if(a[row][col]==a[--row][++col])
             count++;
     }
     if(count==4) return true;
       row=r,col=c;
       count=0;
     //11,9
-    for(int i=0;i<5;i++){
-        if(a[row][col]==a[++row][--col]&&a[row][col]!=2)
+    for(int i=0;i<4&&row<21&&col>=0;i++){
+        if(a[row][col]==a[++row][--col])
             count++;
     }
     if(count==4) return true;
       row=r,col=c;
       count=0;
       //判断特殊的在中间的四种情况:左斜
-       for(int i=0;i<3;i++){
-          if(a[row][col]==a[++row][++col]&&a[row][col]!=2)
+       for(int i=0;i<3&&row<21&&col<21;i++){
+          if(a[row][col]==a[++row][++col])
               count++;
       }
         row=r,col=c;
-      for(int i=0;i<3;i++){
-          if(a[row][col]==a[--row][--col]&&a[row][col]!=2)
+      for(int i=0;i<3&&row>=0&&col>=0;i++){
+          if(a[row][col]==a[--row][--col])
               count++;
          if(count>=4) return true;
       }
@@ -161,13 +161,13 @@ bool Widget:: judgeWin(int row,int col){
         count=0;
 
         //判断特殊的在中间的四种情况:右斜
-         for(int i=0;i<3;i++){
-            if(a[row][col]==a[--row][++col]&&a[row][col]!=2)
+         for(int i=0;i<3&&row>=0&&col<21;i++){
+            if(a[row][col]==a[--row][++col])
                 count++;
         }
           row=r,col=c;
-        for(int i=0;i<3;i++){
-            if(a[row][col]==a[++row][--col]&&a[row][col]!=2)
+        for(int i=0;i<3&&row<21&col>=0;i++){
+            if(a[row][col]==a[++row][--col])
                 count++;
             if(count>=4) return true;
         }
@@ -175,13 +175,13 @@ bool Widget:: judgeWin(int row,int col){
           count=0;
 
           //判断特殊的在中间的四种情况:横
-           for(int i=0;i<3;i++){
-              if(a[row][col]==a[++row][col]&&a[row][col]!=2)
+           for(int i=0;i<3&&row<21;i++){
+              if(a[row][col]==a[++row][col])
                   count++;
           }
             row=r,col=c;
-          for(int i=0;i<3;i++){
-              if(a[row][col]==a[--row][col]&&a[row][col]!=2)
+          for(int i=0;i<3&&row>=0;i++){
+              if(a[row][col]==a[--row][col])
                   count++;
              if(count>=4) return true;
           }
@@ -189,13 +189,13 @@ bool Widget:: judgeWin(int row,int col){
             count=0;
 
             //判断特殊的在中间的四种情况:竖
-             for(int i=0;i<3;i++){
-                if(a[row][col]==a[row][--col]&&a[row][col]!=2)
+             for(int i=0;i<3&&col>=0;i++){
+                if(a[row][col]==a[row][--col])
                     count++;
             }
               row=r,col=c;
-            for(int i=0;i<3;i++){
-                if(a[row][col]==a[row][++col]&&a[row][col]!=2)
+            for(int i=0;i<3&&col<21;i++){
+                if(a[row][col]==a[row][++col])
                     count++;
                 if(count>=4) return true;
             }
