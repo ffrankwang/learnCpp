@@ -46,8 +46,8 @@ void Widget:: mousePressEvent(QMouseEvent* e){
     row=((e->y()-30+15)/30);
     col=((e->x()-30+15)/30);
     if(!(a[row][col]==2))return;//判断是否下过子
-    a[row][col]=color;//0表示黑色
-    if(!(e->x()>=15&&e->x()<=645&&e->y()>=15&&e->y()<=645))return;//判断边界
+    a[row][col]=color;//0表示黑色,1表示白色，2表示示下
+    if(!(e->x()>=15&&e->x()<=645&&e->y()>=15&&e->y()<=630))return;//判断边界
     QPainter painter(this);
     QBrush brush;
     if(color==0)
@@ -67,21 +67,18 @@ void Widget:: mousePressEvent(QMouseEvent* e){
     center.setY(((e->y()+15+30)/30)*30-30);
     painter.drawEllipse(center,14,14);
     color=!color;
-    //ui->label->setText(QString::number(row)+","+QString::number(col));
     ui->label_2->setText("x,y"+QString::number(col+1)+","+QString::number(row+1));
-   if( judgeWin(row,col)==true)  {
-       if(a[row][col]==0)
+       if(judgeWin(row,col)==true&&a[row][col]==0)
        ui->label->setText("Black WIN!");
-       else
+       if(judgeWin(row,col)==true&&a[row][col]==1)
        ui->label->setText("White WIN!");
-   }
 }
 bool Widget:: judgeWin(int row,int col){
     int count=0;
     int r,c;
     r=row,c=col;
-    //11,11
-    for(int i=0;i<5;i++){
+    //右下
+    for(int i=0;i<4;i++){
         if(a[row][col]==a[++row][++col])
             count++;
     }
@@ -89,7 +86,7 @@ bool Widget:: judgeWin(int row,int col){
     if(count==4) return true;
     count=0;
     row=r,col=c;
-    //9,9左上
+    //左上
     for(int i=0;i<4&&row>=0&&col>=0;i++){
         if(a[row][col]==a[--row][--col])
             count++;
@@ -97,7 +94,7 @@ bool Widget:: judgeWin(int row,int col){
     if(count==4) return true;
       count=0;
       row=r,col=c;
-    //10,11
+    //横右
     for(int i=0;i<4&&col<21;i++){
         if(a[row][col]==a[row][++col])
             count++;
@@ -105,7 +102,7 @@ bool Widget:: judgeWin(int row,int col){
     if(count==4) return true;
       count=0;
       row=r,col=c;
-    //10,9
+    //竖上
     for(int i=0;i<4&&col>=0;i++){
         if(a[row][col]==a[row][--col])
             count++;
@@ -113,7 +110,7 @@ bool Widget:: judgeWin(int row,int col){
     if(count==4) return true;
     count=0;
     row=r,col=c;
-    //11,10
+    //竖下
     for(int i=0;i<4&&row<21;i++){
         if(a[row][col]==a[++row][col])
             count++;
@@ -121,7 +118,7 @@ bool Widget:: judgeWin(int row,int col){
     if(count==4) return true;
       row=r,col=c;
       count=0;
-    //9,10
+    //横左
     for(int i=0;i<4&&row>=0;i++){
         if(a[row][col]==a[--row][col])
             count++;
@@ -129,7 +126,7 @@ bool Widget:: judgeWin(int row,int col){
     if(count==4) return true;
       row=r,col=c;
       count=0;
-    //9,11
+    //左下
     for(int i=0;i<4&&row>=0&&col<21;i++){
         if(a[row][col]==a[--row][++col])
             count++;
@@ -137,7 +134,7 @@ bool Widget:: judgeWin(int row,int col){
     if(count==4) return true;
       row=r,col=c;
       count=0;
-    //11,9
+    //右上
     for(int i=0;i<4&&row<21&&col>=0;i++){
         if(a[row][col]==a[++row][--col])
             count++;
@@ -146,58 +143,65 @@ bool Widget:: judgeWin(int row,int col){
       row=r,col=c;
       count=0;
       //判断特殊的在中间的四种情况:左斜
-       for(int i=0;i<3&&row<21&&col<21;i++){
+       for(int i=0;i<2&&row<21&&col<21;i++){
           if(a[row][col]==a[++row][++col])
               count++;
+           else return false;//防止出现1黑2黑3黑4黑5白6黑，下第四个子会判断黑赢
       }
-        row=r,col=c;
-      for(int i=0;i<3&&row>=0&&col>=0;i++){
+        row=r,col=c;//重置坐标
+      for(int i=0;i<2&&row>=0&&col>=0;i++){
           if(a[row][col]==a[--row][--col])
               count++;
-         if(count>=4) return true;
+          else return false;
+         if(count=4) return true;
       }
-     // if(count=4) return true;
         row=r,col=c;
         count=0;
 
         //判断特殊的在中间的四种情况:右斜
-         for(int i=0;i<3&&row>=0&&col<21;i++){
+         for(int i=0;i<2&&row>=0&&col<21;i++){
             if(a[row][col]==a[--row][++col])
                 count++;
+             else return false;
         }
           row=r,col=c;
-        for(int i=0;i<3&&row<21&col>=0;i++){
+        for(int i=0;i<2&&row<21&col>=0;i++){
             if(a[row][col]==a[++row][--col])
                 count++;
-            if(count>=4) return true;
+             else return false;
+            if(count=4) return true;
         }
           row=r,col=c;
           count=0;
 
           //判断特殊的在中间的四种情况:横
-           for(int i=0;i<3&&row<21;i++){
+           for(int i=0;i<2&&row<21;i++){
               if(a[row][col]==a[++row][col])
                   count++;
+               else return false;
           }
             row=r,col=c;
-          for(int i=0;i<3&&row>=0;i++){
+          for(int i=0;i<2&&row>=0;i++){
               if(a[row][col]==a[--row][col])
                   count++;
-             if(count>=4) return true;
+             else return false;
+             if(count=4) return true;
           }
             row=r,col=c;
             count=0;
 
             //判断特殊的在中间的四种情况:竖
-             for(int i=0;i<3&&col>=0;i++){
+             for(int i=0;i<2&&col>=0;i++){
                 if(a[row][col]==a[row][--col])
                     count++;
+                 else return false;
             }
               row=r,col=c;
-            for(int i=0;i<3&&col<21;i++){
+            for(int i=0;i<2&&col<21;i++){
                 if(a[row][col]==a[row][++col])
                     count++;
-                if(count>=4) return true;
+                else return false;
+                if(count=4) return true;
             }
               row=r,col=c;
               count=0;
