@@ -5,7 +5,6 @@
 #include "QPoint"
 #include "QBrush"
 #include "QMouseEvent"
-#include "stdio.h"
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -32,7 +31,6 @@ void Widget:: paintEvent(QPaintEvent *)
     QPainter painter(this);
    pen.setColor(Qt::black);
    painter.setPen(pen);
-   printf("win\n");
    for(int i=1;i<=21;i++){
        painter.drawLine(30,i*30,630,i*30);
    }
