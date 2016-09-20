@@ -74,8 +74,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-image: url(:/images/icon/play.png);
-border-image: url(:/images/icon/start.png);</string>
+    <string notr="true">border-image: url(:/images/icon/start.png);</string>
    </property>
    <property name="text">
     <string/>
@@ -113,7 +112,7 @@ border-image: url(:/images/icon/start.png);</string>
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="volume">
+  <widget class="QPushButton" name="stop">
    <property name="geometry">
     <rect>
      <x>140</x>
@@ -129,7 +128,7 @@ border-image: url(:/images/icon/start.png);</string>
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="stop">
+  <widget class="QPushButton" name="volume">
    <property name="geometry">
     <rect>
      <x>180</x>
@@ -148,8 +147,8 @@ border-image: url(:/images/icon/start.png);</string>
   <widget class="QSlider" name="verticalSlider">
    <property name="geometry">
     <rect>
-     <x>185</x>
-     <y>380</y>
+     <x>220</x>
+     <y>410</y>
      <width>20</width>
      <height>131</height>
     </rect>

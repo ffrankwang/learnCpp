@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'widget.ui'
 **
-** Created: Mon Sep 19 19:30:19 2016
+** Created: Tue Sep 20 10:37:04 2016
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -17,6 +17,7 @@
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QPushButton>
+#include <QtGui/QSlider>
 #include <QtGui/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -30,14 +31,16 @@ public:
     QPushButton *play;
     QPushButton *pause;
     QPushButton *forward;
-    QPushButton *volume;
     QPushButton *stop;
+    QPushButton *volume;
+    QSlider *verticalSlider;
 
     void setupUi(QWidget *Widget)
     {
         if (Widget->objectName().isEmpty())
             Widget->setObjectName(QString::fromUtf8("Widget"));
         Widget->resize(800, 600);
+        Widget->setStyleSheet(QString::fromUtf8("background-color: rgb(219, 255, 196);"));
         label = new QLabel(Widget);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(10, 5, 800, 30));
@@ -53,7 +56,7 @@ public:
         play = new QPushButton(Widget);
         play->setObjectName(QString::fromUtf8("play"));
         play->setGeometry(QRect(20, 510, 30, 30));
-        play->setStyleSheet(QString::fromUtf8("border-image: url(:/images/icon/play.png);"));
+        play->setStyleSheet(QString::fromUtf8("border-image: url(:/images/icon/start.png);"));
         pause = new QPushButton(Widget);
         pause->setObjectName(QString::fromUtf8("pause"));
         pause->setGeometry(QRect(60, 510, 30, 30));
@@ -62,12 +65,18 @@ public:
         forward->setObjectName(QString::fromUtf8("forward"));
         forward->setGeometry(QRect(100, 510, 30, 30));
         forward->setStyleSheet(QString::fromUtf8("border-image: url(:/images/icon/forward.png);"));
-        volume = new QPushButton(Widget);
-        volume->setObjectName(QString::fromUtf8("volume"));
-        volume->setGeometry(QRect(140, 510, 31, 27));
         stop = new QPushButton(Widget);
         stop->setObjectName(QString::fromUtf8("stop"));
-        stop->setGeometry(QRect(180, 510, 31, 27));
+        stop->setGeometry(QRect(140, 510, 30, 30));
+        stop->setStyleSheet(QString::fromUtf8("border-image: url(:/images/icon/stop.png);"));
+        volume = new QPushButton(Widget);
+        volume->setObjectName(QString::fromUtf8("volume"));
+        volume->setGeometry(QRect(180, 510, 30, 30));
+        volume->setStyleSheet(QString::fromUtf8("border-image: url(:/images/icon/sound.png);"));
+        verticalSlider = new QSlider(Widget);
+        verticalSlider->setObjectName(QString::fromUtf8("verticalSlider"));
+        verticalSlider->setGeometry(QRect(220, 410, 20, 131));
+        verticalSlider->setOrientation(Qt::Vertical);
 
         retranslateUi(Widget);
 
@@ -83,8 +92,8 @@ public:
         play->setText(QString());
         pause->setText(QString());
         forward->setText(QString());
-        volume->setText(QApplication::translate("Widget", "stop", 0, QApplication::UnicodeUTF8));
-        stop->setText(QApplication::translate("Widget", "volume", 0, QApplication::UnicodeUTF8));
+        stop->setText(QString());
+        volume->setText(QString());
     } // retranslateUi
 
 };
