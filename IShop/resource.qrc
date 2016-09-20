@@ -5,5 +5,8 @@
         <file>icon/sound.png</file>
         <file>icon/start.png</file>
         <file>icon/stop.png</file>
+        <file>icon/backward.png</file>
+        <file>icon/next.png</file>
+        <file>icon/previous.png</file>
     </qresource>
 </RCC>

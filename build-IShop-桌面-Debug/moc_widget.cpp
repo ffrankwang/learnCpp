@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'widget.h'
 **
-** Created: Tue Sep 20 10:37:05 2016
+** Created: Tue Sep 20 17:08:47 2016
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Widget[] = {
        4,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -32,12 +32,21 @@ static const uint qt_meta_data_Widget[] = {
 
  // slots: signature, parameters, type, tag, flags
        8,    7,    7,    7, 0x08,
+      26,    7,    7,    7, 0x08,
+      44,    7,    7,    7, 0x08,
+      66,    7,    7,    7, 0x08,
+      87,    7,    7,    7, 0x08,
+     105,    7,    7,    7, 0x08,
+     127,    7,    7,    7, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_Widget[] = {
-    "Widget\0\0on_play_clicked()\0"
+    "Widget\0\0on_play_clicked()\0on_stop_clicked()\0"
+    "on_backward_clicked()\0on_forward_clicked()\0"
+    "on_next_clicked()\0on_preivous_clicked()\0"
+    "proc_finished(int)\0"
 };
 
 const QMetaObject Widget::staticMetaObject = {
@@ -70,9 +79,15 @@ int Widget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: on_play_clicked(); break;
+        case 1: on_stop_clicked(); break;
+        case 2: on_backward_clicked(); break;
+        case 3: on_forward_clicked(); break;
+        case 4: on_next_clicked(); break;
+        case 5: on_preivous_clicked(); break;
+        case 6: proc_finished((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
-        _id -= 1;
+        _id -= 7;
     }
     return _id;
 }

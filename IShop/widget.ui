@@ -32,13 +32,13 @@
     <string>                                                          ads</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="video_label">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>40</y>
-     <width>500</width>
-     <height>500</height>
+     <y>35</y>
+     <width>581</width>
+     <height>333</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -51,9 +51,9 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>520</x>
-     <y>80</y>
-     <width>270</width>
+     <x>595</x>
+     <y>35</y>
+     <width>200</width>
      <height>500</height>
     </rect>
    </property>
@@ -67,42 +67,43 @@
   <widget class="QPushButton" name="play">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>510</y>
-     <width>30</width>
-     <height>30</height>
+     <x>100</x>
+     <y>370</y>
+     <width>32</width>
+     <height>32</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-image: url(:/images/icon/start.png);</string>
+    <string notr="true">border-image: url(:/images/icon/start.png);
+selection-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));</string>
    </property>
    <property name="text">
     <string/>
    </property>
-  </widget>
-  <widget class="QPushButton" name="pause">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>510</y>
-     <width>30</width>
-     <height>30</height>
-    </rect>
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/images/icon/start.png</normaloff>:/images/icon/start.png</iconset>
    </property>
-   <property name="styleSheet">
-    <string notr="true">border-image: url(:/images/icon/pause.png);</string>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
    </property>
-   <property name="text">
-    <string/>
+   <property name="shortcut">
+    <string notr="true"/>
+   </property>
+   <property name="checkable">
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="forward">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>510</y>
-     <width>30</width>
-     <height>30</height>
+     <x>140</x>
+     <y>370</y>
+     <width>32</width>
+     <height>32</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -111,14 +112,24 @@
    <property name="text">
     <string/>
    </property>
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/images/icon/forward.png</normaloff>:/images/icon/forward.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
   </widget>
   <widget class="QPushButton" name="stop">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>510</y>
-     <width>30</width>
-     <height>30</height>
+     <x>220</x>
+     <y>370</y>
+     <width>32</width>
+     <height>32</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -127,14 +138,24 @@
    <property name="text">
     <string/>
    </property>
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/images/icon/stop.png</normaloff>:/images/icon/stop.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
   </widget>
-  <widget class="QPushButton" name="volume">
+  <widget class="QPushButton" name="next">
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>510</y>
-     <width>30</width>
-     <height>30</height>
+     <y>370</y>
+     <width>32</width>
+     <height>32</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -143,22 +164,74 @@
    <property name="text">
     <string/>
    </property>
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/images/icon/next.png</normaloff>:/images/icon/next.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
   </widget>
-  <widget class="QSlider" name="verticalSlider">
+  <widget class="QPushButton" name="backward">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>410</y>
-     <width>20</width>
-     <height>131</height>
+     <x>60</x>
+     <y>370</y>
+     <width>32</width>
+     <height>32</height>
     </rect>
    </property>
-   <property name="orientation">
-    <enum>Qt::Vertical</enum>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/images/icon/backward.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/images/icon/backward.png</normaloff>:/images/icon/backward.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="preivous">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>370</y>
+     <width>32</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/images/icon/previous.png);
+background-image: url(:/images/icon/previous.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/images/icon/previous.png</normaloff>:/images/icon/previous.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
    </property>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections/>
 </ui>
