@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,14 +19,15 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>5</y>
+     <x>0</x>
+     <y>0</y>
      <width>800</width>
      <height>30</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(130, 195, 255);</string>
+    <string notr="true">background-color: rgb(130, 195, 255);
+background-color: rgb(219, 255, 196);</string>
    </property>
    <property name="text">
     <string>                                                          ads</string>
@@ -35,33 +36,36 @@
   <widget class="QLabel" name="video_label">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>35</y>
-     <width>581</width>
-     <height>333</height>
+     <x>0</x>
+     <y>30</y>
+     <width>600</width>
+     <height>340</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(198, 255, 112);</string>
+    <string notr="true"/>
    </property>
    <property name="text">
-    <string>                                                       video</string>
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resource.qrc">:/images/icon/In Time_3262251001518004.jpg</pixmap>
    </property>
   </widget>
-  <widget class="QLabel" name="label_3">
+  <widget class="QLabel" name="left_label">
    <property name="geometry">
     <rect>
-     <x>595</x>
-     <y>35</y>
+     <x>600</x>
+     <y>30</y>
      <width>200</width>
-     <height>500</height>
+     <height>570</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(170, 170, 255);</string>
    </property>
    <property name="text">
-    <string>            促销信息</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="play">
@@ -239,6 +243,35 @@ background-image: url(:/images/icon/previous.png);</string>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="monitor">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>370</y>
+     <width>85</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="monitorLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>410</y>
+     <width>400</width>
+     <height>300</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 148, 105);</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

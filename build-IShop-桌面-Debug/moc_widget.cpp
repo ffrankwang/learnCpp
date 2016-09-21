@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'widget.h'
 **
-** Created: Wed Sep 21 09:30:53 2016
+** Created: Wed Sep 21 14:59:56 2016
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Widget[] = {
        4,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -40,6 +40,8 @@ static const uint qt_meta_data_Widget[] = {
      127,    7,    7,    7, 0x08,
      152,  146,    7,    7, 0x08,
      180,    7,    7,    7, 0x08,
+     207,    7,    7,    7, 0x08,
+     236,  228,    7,    7, 0x08,
 
        0        // eod
 };
@@ -51,6 +53,8 @@ static const char qt_meta_stringdata_Widget[] = {
     "proc_finished(int)\0value\0"
     "on_volume_valueChanged(int)\0"
     "on_volume_sliderReleased()\0"
+    "on_monitor_clicked()\0img,len\0"
+    "recv_image_slot(char*,int)\0"
 };
 
 const QMetaObject Widget::staticMetaObject = {
@@ -91,9 +95,11 @@ int Widget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 6: proc_finished((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 7: on_volume_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 8: on_volume_sliderReleased(); break;
+        case 9: on_monitor_clicked(); break;
+        case 10: recv_image_slot((*reinterpret_cast< char*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         default: ;
         }
-        _id -= 9;
+        _id -= 11;
     }
     return _id;
 }

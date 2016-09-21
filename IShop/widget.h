@@ -9,6 +9,8 @@
 #include <qstringlist.h>
 #include <qpixmap.h>
 #include <qicon.h>
+#include"videothread.h"
+#include "ssocket.h"
 namespace Ui {
 class Widget;
 }
@@ -42,6 +44,8 @@ private slots:
     void on_volume_sliderReleased();
 
 
+    void on_monitor_clicked();
+    void recv_image_slot(char *img, int len);
 private:
     Ui::Widget *ui;
     QProcess *qprocess;
@@ -51,6 +55,7 @@ private:
     QIcon icon;
     void play();
     void show_List();
+    VideoThread *thread;
 };
 
 #endif // WIDGET_H

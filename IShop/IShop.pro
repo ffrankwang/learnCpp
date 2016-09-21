@@ -13,9 +13,13 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        widget.cpp
+        widget.cpp \
+    videothread.cpp \
+    ssocket.cpp
 
-HEADERS  += widget.h
+HEADERS  += widget.h \
+    videothread.h \
+    ssocket.h
 
 FORMS    += widget.ui
 

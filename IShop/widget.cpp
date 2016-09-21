@@ -153,3 +153,17 @@ void Widget::on_volume_sliderReleased()
     sprintf(buf,"volume %d 1\n",value);
     qprocess->write(buf);
 }
+
+void Widget::on_monitor_clicked()
+{
+    thread = new VideoThread(this);
+    connect(thread,SIGNAL(recv_image_slot(char *img, int len)),this,SLOT(recv_image_slot(char *img, int len)));
+    thread->start();
+
+}
+void Widget::recv_image_slot(char *img, int len){
+    QPixmap pix;
+    pix.loadFromData((uchar *)img, len);
+    ui->monitorLabel->setPixmap(pix);
+    delete []img; //释放内存
+}
