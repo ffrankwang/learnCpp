@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'widget.ui'
 **
-** Created: Tue Sep 20 16:31:58 2016
+** Created: Wed Sep 21 08:58:48 2016
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -17,6 +17,7 @@
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QPushButton>
+#include <QtGui/QSlider>
 #include <QtGui/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -33,6 +34,7 @@ public:
     QPushButton *next;
     QPushButton *backward;
     QPushButton *preivous;
+    QSlider *volume;
 
     void setupUi(QWidget *Widget)
     {
@@ -104,6 +106,10 @@ public:
         icon5.addFile(QString::fromUtf8(":/images/icon/previous.png"), QSize(), QIcon::Normal, QIcon::Off);
         preivous->setIcon(icon5);
         preivous->setIconSize(QSize(32, 32));
+        volume = new QSlider(Widget);
+        volume->setObjectName(QString::fromUtf8("volume"));
+        volume->setGeometry(QRect(260, 376, 160, 19));
+        volume->setOrientation(Qt::Horizontal);
 
         retranslateUi(Widget);
 

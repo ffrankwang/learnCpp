@@ -228,6 +228,19 @@ background-image: url(:/images/icon/previous.png);</string>
     </size>
    </property>
   </widget>
+  <widget class="QSlider" name="volume">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>376</y>
+     <width>160</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>

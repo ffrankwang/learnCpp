@@ -7,6 +7,7 @@ Widget::Widget(QWidget *parent) :
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
+    ui->volume->setMaximum(100);
     show_List();
     cur_Num=0;
 
@@ -134,4 +135,21 @@ void Widget::on_preivous_clicked()
         play();
 }
 
+}
+
+void Widget::on_volume_valueChanged(int value)
+{       if(ui->volume->isSliderDown()) return;
+        char buf[100];
+        sprintf(buf,"volume %d 1\n",value);
+        qprocess->write(buf);
+
+}
+
+void Widget::on_volume_sliderReleased()
+{
+    if(play_status==2||play_status==0)return;
+    int value=ui->volume->value();
+    char buf[100];
+    sprintf(buf,"volume %d 1\n",value);
+    qprocess->write(buf);
 }

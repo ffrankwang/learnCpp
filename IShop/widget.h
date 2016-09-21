@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <qprocess.h>
 #include <qfile.h>
-#include <qstring.h>
+#include "QString"
 #include <qdebug.h>
 #include <qstringlist.h>
 #include <qpixmap.h>
@@ -36,6 +36,11 @@ private slots:
     void on_preivous_clicked();
 
     void proc_finished(int);
+
+    void on_volume_valueChanged(int value);
+
+    void on_volume_sliderReleased();
+
 
 private:
     Ui::Widget *ui;

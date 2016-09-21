@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'widget.h'
 **
-** Created: Tue Sep 20 17:08:47 2016
+** Created: Wed Sep 21 09:30:53 2016
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Widget[] = {
        4,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -38,6 +38,8 @@ static const uint qt_meta_data_Widget[] = {
       87,    7,    7,    7, 0x08,
      105,    7,    7,    7, 0x08,
      127,    7,    7,    7, 0x08,
+     152,  146,    7,    7, 0x08,
+     180,    7,    7,    7, 0x08,
 
        0        // eod
 };
@@ -46,7 +48,9 @@ static const char qt_meta_stringdata_Widget[] = {
     "Widget\0\0on_play_clicked()\0on_stop_clicked()\0"
     "on_backward_clicked()\0on_forward_clicked()\0"
     "on_next_clicked()\0on_preivous_clicked()\0"
-    "proc_finished(int)\0"
+    "proc_finished(int)\0value\0"
+    "on_volume_valueChanged(int)\0"
+    "on_volume_sliderReleased()\0"
 };
 
 const QMetaObject Widget::staticMetaObject = {
@@ -85,9 +89,11 @@ int Widget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 4: on_next_clicked(); break;
         case 5: on_preivous_clicked(); break;
         case 6: proc_finished((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 7: on_volume_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 8: on_volume_sliderReleased(); break;
         default: ;
         }
-        _id -= 7;
+        _id -= 9;
     }
     return _id;
 }
