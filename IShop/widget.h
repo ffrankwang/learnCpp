@@ -45,7 +45,7 @@ private slots:
 
 
     void on_monitor_clicked();
-    void recv_image_slot(char *img, int len);
+    void recv_image_slot(char *, int );
 private:
     Ui::Widget *ui;
     QProcess *qprocess;

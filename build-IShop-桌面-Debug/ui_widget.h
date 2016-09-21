@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'widget.ui'
 **
-** Created: Wed Sep 21 14:55:28 2016
+** Created: Wed Sep 21 15:40:50 2016
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -119,8 +119,8 @@ public:
         monitor->setGeometry(QRect(510, 370, 85, 27));
         monitorLabel = new QLabel(Widget);
         monitorLabel->setObjectName(QString::fromUtf8("monitorLabel"));
-        monitorLabel->setGeometry(QRect(10, 410, 400, 300));
-        monitorLabel->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 148, 105);"));
+        monitorLabel->setGeometry(QRect(600, 0, 201, 151));
+        monitorLabel->setStyleSheet(QString::fromUtf8("background-color: rgb(85, 170, 127);"));
 
         retranslateUi(Widget);
 
@@ -139,7 +139,7 @@ public:
         next->setText(QString());
         backward->setText(QString());
         preivous->setText(QString());
-        monitor->setText(QApplication::translate("Widget", "PushButton", 0, QApplication::UnicodeUTF8));
+        monitor->setText(QApplication::translate("Widget", "\347\233\221\346\216\247", 0, QApplication::UnicodeUTF8));
         monitorLabel->setText(QString());
     } // retranslateUi
 

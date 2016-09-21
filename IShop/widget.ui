@@ -255,20 +255,20 @@ background-image: url(:/images/icon/previous.png);</string>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>监控</string>
    </property>
   </widget>
   <widget class="QLabel" name="monitorLabel">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>410</y>
-     <width>400</width>
-     <height>300</height>
+     <x>600</x>
+     <y>0</y>
+     <width>201</width>
+     <height>151</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 148, 105);</string>
+    <string notr="true">background-color: rgb(85, 170, 127);</string>
    </property>
    <property name="text">
     <string/>

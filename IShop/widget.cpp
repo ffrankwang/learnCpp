@@ -157,10 +157,11 @@ void Widget::on_volume_sliderReleased()
 void Widget::on_monitor_clicked()
 {
     thread = new VideoThread(this);
-    connect(thread,SIGNAL(recv_image_slot(char *img, int len)),this,SLOT(recv_image_slot(char *img, int len)));
+    connect(thread,SIGNAL(recv_image(char*,int)),this,SLOT(recv_image_slot(char *, int)));
     thread->start();
 
 }
+//接收图片的槽函数
 void Widget::recv_image_slot(char *img, int len){
     QPixmap pix;
     pix.loadFromData((uchar *)img, len);

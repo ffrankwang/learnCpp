@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'widget.h'
 **
-** Created: Wed Sep 21 14:59:56 2016
+** Created: Wed Sep 21 15:37:58 2016
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -41,7 +41,7 @@ static const uint qt_meta_data_Widget[] = {
      152,  146,    7,    7, 0x08,
      180,    7,    7,    7, 0x08,
      207,    7,    7,    7, 0x08,
-     236,  228,    7,    7, 0x08,
+     230,  228,    7,    7, 0x08,
 
        0        // eod
 };
@@ -53,7 +53,7 @@ static const char qt_meta_stringdata_Widget[] = {
     "proc_finished(int)\0value\0"
     "on_volume_valueChanged(int)\0"
     "on_volume_sliderReleased()\0"
-    "on_monitor_clicked()\0img,len\0"
+    "on_monitor_clicked()\0,\0"
     "recv_image_slot(char*,int)\0"
 };
 
