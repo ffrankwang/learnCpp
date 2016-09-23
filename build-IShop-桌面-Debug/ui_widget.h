@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'widget.ui'
 **
-** Created: Fri Sep 23 08:38:27 2016
+** Created: Fri Sep 23 13:00:02 2016
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -38,6 +38,7 @@ public:
     QPushButton *monitor;
     QLabel *monitorLabel;
     QPushButton *sound;
+    QSlider *progress_Slider;
 
     void setupUi(QWidget *Widget)
     {
@@ -134,6 +135,10 @@ public:
         icon7.addFile(QString::fromUtf8(":/images/icon/sound.png"), QSize(), QIcon::Normal, QIcon::Off);
         sound->setIcon(icon7);
         sound->setIconSize(QSize(32, 32));
+        progress_Slider = new QSlider(Widget);
+        progress_Slider->setObjectName(QString::fromUtf8("progress_Slider"));
+        progress_Slider->setGeometry(QRect(0, 350, 601, 21));
+        progress_Slider->setOrientation(Qt::Horizontal);
 
         retranslateUi(Widget);
 

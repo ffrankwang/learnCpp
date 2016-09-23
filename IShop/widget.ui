@@ -312,6 +312,19 @@ background-image: url(:/images/icon/previous.png);</string>
     </size>
    </property>
   </widget>
+  <widget class="QSlider" name="progress_Slider">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>350</y>
+     <width>601</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>

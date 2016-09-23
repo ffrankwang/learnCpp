@@ -13,7 +13,9 @@ Widget::Widget(QWidget *parent) :
     pos=1;
     adStr="国庆大酬宾，开业五周年，打折促销，全场半价，错过今年在等一年";
     connect(&timer,SIGNAL(timeout()),this,SLOT(timer_slot()));
-    timer.start(300);
+    timer.start(800);
+
+    connect(&play_timer,SIGNAL(timeout()),this,SLOT(play_timer_slot()));
 
 
 }
@@ -21,28 +23,31 @@ Widget::Widget(QWidget *parent) :
 Widget::~Widget()
 {
     delete ui;
-    delete qprocess;
+    delete proc;
 }
 
 void Widget::play(){
     QPixmap pix;
     if(play_status==0){
-    qprocess=new QProcess(this);
-    connect(qprocess, SIGNAL(finished(int)), this, SLOT(proc_finished(int)));
+    proc=new QProcess(this);
+    connect(proc, SIGNAL(finished(int)), this, SLOT(proc_finished(int)));//与进程结束信号建立连接
+    connect(proc,SIGNAL(readyReadStandardOutput()),this,SLOT(proc_read_pos_slot()));//读取进度条返回的信息
+    play_timer.start(800);
     WId id=ui->video_label->winId();
     QStringList args;
     QString str=QString::number(id);
     args<<"-slave"<<"-quiet"<<"-zoom"<<"-wid"<<str<<"/root/frank/music/"+list[cur_Num];
-    qprocess->start("mplayer",args);
+    proc->start("mplayer",args);
     //当前已经播放，将按钮切换为暂停
     //设置为暂停按钮
     pix.load(":/images/icon/pause.png");
     icon.addPixmap(pix);
     ui->play->setIcon(icon);
     play_status=1;
+    play_timer.start(100);
 
     }else if(play_status==1){
-        qprocess->write("pause\n");
+        proc->write("pause\n");
         //设置为播放按钮
         pix.load(":/images/icon/start.png");
         icon.addPixmap(pix);
@@ -51,7 +56,7 @@ void Widget::play(){
 
     }else if(play_status==2){
         //设置为暂停按钮
-        qprocess->write("pause\n");
+        proc->write("pause\n");
         pix.load(":/images/icon/pause.png");
         icon.addPixmap(pix);
         ui->play->setIcon(icon);
@@ -68,9 +73,10 @@ void Widget::on_play_clicked()
 void Widget::on_stop_clicked()
 {    QPixmap pix1;
     if(play_status==1||play_status==2){
-        qprocess->write("quit\n");
-        qprocess->waitForFinished();
-        delete qprocess;
+        proc->write("quit\n");
+        proc->waitForFinished();
+        play_timer.stop();//停掉监控进度的定时器
+        delete proc;
         //设置为播放按钮
         pix1.load(":images/icon/start.png");
         icon.addPixmap(pix1);
@@ -83,14 +89,14 @@ void Widget::on_stop_clicked()
 void Widget::on_backward_clicked()
 {
     if(play_status==1){
-        qprocess->write("pausing_keep seek -3 0\n");
+        proc->write("pausing_keep seek -3 0\n");
      }
 }
 
 void Widget::on_forward_clicked()
 {
     if(play_status==1){
-        qprocess->write("pausing_keep seek +3 0\n");
+        proc->write("pausing_keep seek +3 0\n");
      }
 }
 void Widget::show_List(){
@@ -99,25 +105,27 @@ void Widget::show_List(){
     QFile file;
     file.setFileName("/root/frank/music/list.txt");
      file.open(QFile::ReadOnly);
+     qDebug()<<"===============MusicList=====================";
      while((retval=file.readLine(line,1024))>0){
         line[retval-1] = '\0';
         list<<line;
         qDebug()<<line;
      }
-
+    qDebug()<<"============================================";
     file.close();
     play_status=0;//设置褪初始状态，0表示未播放
 }
 void Widget::proc_finished(int){
-    disconnect(qprocess, SIGNAL(finished(int)), this, SLOT(proc_finished(int)));//断开slot函数建立连接
-    delete qprocess;
+    disconnect(proc, SIGNAL(finished(int)), this, SLOT(proc_finished(int)));//断开slot函数建立连接
+    play_timer.stop();
+    delete proc;
     play_status=0;
     cur_Num++;
     play();
 }
 void Widget::on_next_clicked()
 {
-    disconnect(qprocess, SIGNAL(finished(int)), this, SLOT(proc_finished(int)));//断开slot函数建立连接
+    disconnect(proc, SIGNAL(finished(int)), this, SLOT(proc_finished(int)));//断开slot函数建立连接
     if(play_status==0){
         return;
     }
@@ -131,7 +139,7 @@ void Widget::on_next_clicked()
 
 void Widget::on_preivous_clicked()
 {
-    disconnect(qprocess, SIGNAL(finished(int)), this, SLOT(proc_finished(int)));//断开slot函数建立连接
+    disconnect(proc, SIGNAL(finished(int)), this, SLOT(proc_finished(int)));//断开slot函数建立连接
     if(play_status==0)return;
     if(play_status==1||play_status==2){
         if(cur_Num==0)cur_Num=1;
@@ -146,7 +154,7 @@ void Widget::on_volume_valueChanged(int value)
 {       if(ui->volume->isSliderDown()) return;
         char buf[100];
         sprintf(buf,"volume %d 1\n",value);
-        qprocess->write(buf);
+        proc->write(buf);
 
 }
 
@@ -156,7 +164,7 @@ void Widget::on_volume_sliderReleased()
     int value=ui->volume->value();
     char buf[100];
     sprintf(buf,"volume %d 1\n",value);
-    qprocess->write(buf);
+    proc->write(buf);
 }
 
 void Widget::on_monitor_clicked()
@@ -193,4 +201,25 @@ void Widget::timer_slot()
         pos=1;
     }
 }
+void Widget::play_timer_slot(){
+    if(play_status== 1){
 
+        proc->write("get_percent_pos\n");
+       //proc->write("get_time_length");
+
+    }
+
+}
+void Widget::proc_read_pos_slot(){
+        char buf[1024];
+        char *p;
+        int pos;
+
+        proc->read(buf,1024);
+        if(strncmp("ANS_PERCENT_POSITION",buf,20) == 0){
+             p = strchr(buf,'=');
+             pos = atoi(p+1);
+             ui->progress_Slider->setValue(pos);
+        }
+
+}

@@ -48,9 +48,12 @@ private slots:
     void on_monitor_clicked();
     void recv_image_slot(char *, int );
     void timer_slot();
+
+    void play_timer_slot();
+    void proc_read_pos_slot();
 private:
     Ui::Widget *ui;
-    QProcess *qprocess;
+    QProcess *proc;
     QStringList list;
     int play_status;
     int cur_Num;
@@ -59,6 +62,7 @@ private:
     void show_List();
     VideoThread *thread;
     QTimer timer;
+    QTimer play_timer;
     int pos;
     QString adStr;
 };

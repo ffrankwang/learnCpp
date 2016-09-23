@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'widget.h'
 **
-** Created: Fri Sep 23 08:36:08 2016
+** Created: Fri Sep 23 14:48:21 2016
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Widget[] = {
        4,       // revision
        0,       // classname
        0,    0, // classinfo
-      12,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -43,6 +43,8 @@ static const uint qt_meta_data_Widget[] = {
      207,    7,    7,    7, 0x08,
      230,  228,    7,    7, 0x08,
      257,    7,    7,    7, 0x08,
+     270,    7,    7,    7, 0x08,
+     288,    7,    7,    7, 0x08,
 
        0        // eod
 };
@@ -56,6 +58,7 @@ static const char qt_meta_stringdata_Widget[] = {
     "on_volume_sliderReleased()\0"
     "on_monitor_clicked()\0,\0"
     "recv_image_slot(char*,int)\0timer_slot()\0"
+    "play_timer_slot()\0proc_read_pos_slot()\0"
 };
 
 const QMetaObject Widget::staticMetaObject = {
@@ -99,9 +102,11 @@ int Widget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 9: on_monitor_clicked(); break;
         case 10: recv_image_slot((*reinterpret_cast< char*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 11: timer_slot(); break;
+        case 12: play_timer_slot(); break;
+        case 13: proc_read_pos_slot(); break;
         default: ;
         }
-        _id -= 12;
+        _id -= 14;
     }
     return _id;
 }
