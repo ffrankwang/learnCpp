@@ -11,6 +11,7 @@
 #include <qicon.h>
 #include"videothread.h"
 #include "ssocket.h"
+#include "QTimer"
 namespace Ui {
 class Widget;
 }
@@ -46,6 +47,7 @@ private slots:
 
     void on_monitor_clicked();
     void recv_image_slot(char *, int );
+    void timer_slot();
 private:
     Ui::Widget *ui;
     QProcess *qprocess;
@@ -56,6 +58,9 @@ private:
     void play();
     void show_List();
     VideoThread *thread;
+    QTimer timer;
+    int pos;
+    QString adStr;
 };
 
 #endif // WIDGET_H

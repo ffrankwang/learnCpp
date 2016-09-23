@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'widget.ui'
 **
-** Created: Wed Sep 21 15:40:50 2016
+** Created: Fri Sep 23 08:38:27 2016
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -25,7 +25,7 @@ QT_BEGIN_NAMESPACE
 class Ui_Widget
 {
 public:
-    QLabel *label;
+    QLabel *adlabel;
     QLabel *video_label;
     QLabel *left_label;
     QPushButton *play;
@@ -37,18 +37,18 @@ public:
     QSlider *volume;
     QPushButton *monitor;
     QLabel *monitorLabel;
+    QPushButton *sound;
 
     void setupUi(QWidget *Widget)
     {
         if (Widget->objectName().isEmpty())
             Widget->setObjectName(QString::fromUtf8("Widget"));
-        Widget->resize(800, 800);
+        Widget->resize(800, 600);
         Widget->setStyleSheet(QString::fromUtf8("background-color: rgb(219, 255, 196);"));
-        label = new QLabel(Widget);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(0, 0, 800, 30));
-        label->setStyleSheet(QString::fromUtf8("background-color: rgb(130, 195, 255);\n"
-"background-color: rgb(219, 255, 196);"));
+        adlabel = new QLabel(Widget);
+        adlabel->setObjectName(QString::fromUtf8("adlabel"));
+        adlabel->setGeometry(QRect(0, 0, 800, 30));
+        adlabel->setStyleSheet(QString::fromUtf8("background-color: rgb(241, 160, 255);"));
         video_label = new QLabel(Widget);
         video_label->setObjectName(QString::fromUtf8("video_label"));
         video_label->setGeometry(QRect(0, 30, 600, 340));
@@ -112,15 +112,28 @@ public:
         preivous->setIconSize(QSize(32, 32));
         volume = new QSlider(Widget);
         volume->setObjectName(QString::fromUtf8("volume"));
-        volume->setGeometry(QRect(260, 376, 160, 19));
+        volume->setGeometry(QRect(300, 380, 160, 19));
         volume->setOrientation(Qt::Horizontal);
         monitor = new QPushButton(Widget);
         monitor->setObjectName(QString::fromUtf8("monitor"));
-        monitor->setGeometry(QRect(510, 370, 85, 27));
+        monitor->setGeometry(QRect(500, 370, 32, 32));
+        monitor->setStyleSheet(QString::fromUtf8("border-image: url(:/images/icon/monitor.png);"));
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/images/icon/monitor.png"), QSize(), QIcon::Normal, QIcon::Off);
+        monitor->setIcon(icon6);
+        monitor->setIconSize(QSize(32, 32));
         monitorLabel = new QLabel(Widget);
         monitorLabel->setObjectName(QString::fromUtf8("monitorLabel"));
-        monitorLabel->setGeometry(QRect(600, 0, 201, 151));
+        monitorLabel->setGeometry(QRect(600, 30, 200, 150));
         monitorLabel->setStyleSheet(QString::fromUtf8("background-color: rgb(85, 170, 127);"));
+        sound = new QPushButton(Widget);
+        sound->setObjectName(QString::fromUtf8("sound"));
+        sound->setGeometry(QRect(260, 370, 32, 32));
+        sound->setStyleSheet(QString::fromUtf8("border-image: url(:/images/icon/stop.png);"));
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8(":/images/icon/sound.png"), QSize(), QIcon::Normal, QIcon::Off);
+        sound->setIcon(icon7);
+        sound->setIconSize(QSize(32, 32));
 
         retranslateUi(Widget);
 
@@ -130,7 +143,7 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QApplication::translate("Widget", "Widget", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("Widget", "                                                          ads", 0, QApplication::UnicodeUTF8));
+        adlabel->setText(QApplication::translate("Widget", "                                                          ads", 0, QApplication::UnicodeUTF8));
         video_label->setText(QString());
         left_label->setText(QString());
         play->setText(QString());
@@ -139,8 +152,9 @@ public:
         next->setText(QString());
         backward->setText(QString());
         preivous->setText(QString());
-        monitor->setText(QApplication::translate("Widget", "\347\233\221\346\216\247", 0, QApplication::UnicodeUTF8));
+        monitor->setText(QString());
         monitorLabel->setText(QString());
+        sound->setText(QString());
     } // retranslateUi
 
 };

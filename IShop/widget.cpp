@@ -10,6 +10,11 @@ Widget::Widget(QWidget *parent) :
     ui->volume->setMaximum(100);
     show_List();
     cur_Num=0;
+    pos=1;
+    adStr="国庆大酬宾，开业五周年，打折促销，全场半价，错过今年在等一年";
+    connect(&timer,SIGNAL(timeout()),this,SLOT(timer_slot()));
+    timer.start(300);
+
 
 }
 
@@ -67,7 +72,7 @@ void Widget::on_stop_clicked()
         qprocess->waitForFinished();
         delete qprocess;
         //设置为播放按钮
-        pix1.load("/root/frank/git/learnCpp/IShop/icon/start.png");
+        pix1.load(":images/icon/start.png");
         icon.addPixmap(pix1);
         ui->play->setStyleSheet("border-image: url(:/images/icon/start.png);");
         ui->play->setIcon(icon);
@@ -168,3 +173,24 @@ void Widget::recv_image_slot(char *img, int len){
     ui->monitorLabel->setPixmap(pix);
     delete []img; //释放内存
 }
+void Widget::timer_slot()
+{
+    int len;
+    QString str="                                             ";
+    len=str.length();
+    if(pos<len){
+        str=str.mid(0,str.length()-pos);
+        str=str+adStr.mid(0,pos);
+        pos=pos+1;
+       // qDebug()<<str;
+    }else{
+        str=adStr.mid(pos-len,len);
+        pos=pos+1;
+    }
+    ui->adlabel->setText(str);
+
+    if(str.length()<=1){
+        pos=1;
+    }
+}
+
