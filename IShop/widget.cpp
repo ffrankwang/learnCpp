@@ -31,13 +31,20 @@ void Widget::play(){
     if(play_status==0){
     proc=new QProcess(this);
     connect(proc, SIGNAL(finished(int)), this, SLOT(proc_finished(int)));//与进程结束信号建立连接
-    connect(proc,SIGNAL(readyReadStandardOutput()),this,SLOT(proc_read_pos_slot()));//读取进度条返回的信息
+    connect(proc,SIGNAL(readyReadStandardOutput()),this,SLOT(proc_read_proc_slot()));//读取proc 返回的信息
     play_timer.start(800);
     WId id=ui->video_label->winId();
     QStringList args;
     QString str=QString::number(id);
+    if(list[cur_Num].contains("mp3")){
+        pix.load(":/images/icon/background.jpg");
+        ui->video_label->setPixmap(pix);
+        ui->video_label->setText("\t\t"+list[cur_Num].mid(0,list[cur_Num].length()-4));
+    }
     args<<"-slave"<<"-quiet"<<"-zoom"<<"-wid"<<str<<"/root/frank/music/"+list[cur_Num];
     proc->start("mplayer",args);
+
+
     //当前已经播放，将按钮切换为暂停
     //设置为暂停按钮
     pix.load(":/images/icon/pause.png");
@@ -125,10 +132,11 @@ void Widget::proc_finished(int){
 }
 void Widget::on_next_clicked()
 {
-    disconnect(proc, SIGNAL(finished(int)), this, SLOT(proc_finished(int)));//断开slot函数建立连接
+
     if(play_status==0){
         return;
     }
+     disconnect(proc, SIGNAL(finished(int)), this, SLOT(proc_finished(int)));//断开slot函数建立连接
     if(play_status==1||play_status==2){
         if(cur_Num==list.size()-1)cur_Num=0;
         on_stop_clicked();
@@ -139,8 +147,9 @@ void Widget::on_next_clicked()
 
 void Widget::on_preivous_clicked()
 {
-    disconnect(proc, SIGNAL(finished(int)), this, SLOT(proc_finished(int)));//断开slot函数建立连接
+
     if(play_status==0)return;
+    disconnect(proc, SIGNAL(finished(int)), this, SLOT(proc_finished(int)));//断开slot函数建立连接
     if(play_status==1||play_status==2){
         if(cur_Num==0)cur_Num=1;
         on_stop_clicked();
@@ -204,22 +213,43 @@ void Widget::timer_slot()
 void Widget::play_timer_slot(){
     if(play_status== 1){
 
-        proc->write("get_percent_pos\n");
-       //proc->write("get_time_length");
-
+        proc->write("get_percent_pos \n");
+        proc->write("get_time_length \n");
     }
 
 }
-void Widget::proc_read_pos_slot(){
-        char buf[1024];
-        char *p;
-        int pos;
+void Widget::proc_read_proc_slot(){
+    char buf[1024];
+       char *p;
+       int pos;
+   while(
+       proc->canReadLine()){
+       proc->readLine(buf,1024);
+       if(strncmp("ANS_PERCENT_POSITION",buf,20) == 0){
+            p = strchr(buf,'=');
+            pos = atoi(p+1);
+            ui->progress->setValue(pos);
+            //qDebug()<<"pos"<<pos;
+       }
+       if(strncmp("ANS_LENGTH",buf,10) == 0){//获取每首歌的时间
+            p = strchr(buf,'=');
+            pos = atoi(p+1);
+           //qDebug()<<"length"<<pos;
+           music_len = pos;//传给全局变量
+       }
+   }
 
-        proc->read(buf,1024);
-        if(strncmp("ANS_PERCENT_POSITION",buf,20) == 0){
-             p = strchr(buf,'=');
-             pos = atoi(p+1);
-             ui->progress_Slider->setValue(pos);
-        }
+}
+
+void Widget::on_progress_sliderMoved(int position)
+{
+    if(play_status!=1)return;
+    play_timer.stop();
+    char buf[100];
+    sprintf(buf,"seek %d 2\n",position*music_len/100);
+    proc->write(buf);
+   // qDebug()<<"buf:"<<buf;
+    ui->progress->setValue(position);
+    play_timer.start();
 
 }

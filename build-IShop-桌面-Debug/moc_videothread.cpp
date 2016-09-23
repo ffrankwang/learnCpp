@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'videothread.h'
 **
-** Created: Fri Sep 23 10:26:44 2016
+** Created: Fri Sep 23 16:37:54 2016
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!

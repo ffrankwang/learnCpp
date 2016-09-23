@@ -29,7 +29,7 @@
     <string notr="true">background-color: rgb(241, 160, 255);</string>
    </property>
    <property name="text">
-    <string>                                                          ads</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="video_label">
@@ -41,14 +41,20 @@
      <height>340</height>
     </rect>
    </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">background-image: url(:/images/icon/background.jpg);</string>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="resource.qrc">:/images/icon/In Time_3262251001518004.jpg</pixmap>
+    <pixmap>:/images/icon/In Time_3262251001518004.jpg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLabel" name="left_label">
@@ -75,6 +81,9 @@
      <width>32</width>
      <height>32</height>
     </rect>
+   </property>
+   <property name="mouseTracking">
+    <bool>false</bool>
    </property>
    <property name="styleSheet">
     <string notr="true">border-image: url(:/images/icon/start.png);
@@ -160,6 +169,9 @@ selection-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5,
      <width>32</width>
      <height>32</height>
     </rect>
+   </property>
+   <property name="mouseTracking">
+    <bool>false</bool>
    </property>
    <property name="styleSheet">
     <string notr="true">border-image: url(:/images/icon/sound.png);</string>
@@ -295,6 +307,9 @@ background-image: url(:/images/icon/previous.png);</string>
      <height>32</height>
     </rect>
    </property>
+   <property name="mouseTracking">
+    <bool>false</bool>
+   </property>
    <property name="styleSheet">
     <string notr="true">border-image: url(:/images/icon/stop.png);</string>
    </property>
@@ -312,13 +327,13 @@ background-image: url(:/images/icon/previous.png);</string>
     </size>
    </property>
   </widget>
-  <widget class="QSlider" name="progress_Slider">
+  <widget class="QSlider" name="progress">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>350</y>
-     <width>601</width>
-     <height>21</height>
+     <y>360</y>
+     <width>600</width>
+     <height>10</height>
     </rect>
    </property>
    <property name="orientation">

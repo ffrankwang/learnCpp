@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'widget.ui'
 **
-** Created: Fri Sep 23 13:00:02 2016
+** Created: Fri Sep 23 16:37:51 2016
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -38,7 +38,7 @@ public:
     QPushButton *monitor;
     QLabel *monitorLabel;
     QPushButton *sound;
-    QSlider *progress_Slider;
+    QSlider *progress;
 
     void setupUi(QWidget *Widget)
     {
@@ -53,8 +53,10 @@ public:
         video_label = new QLabel(Widget);
         video_label->setObjectName(QString::fromUtf8("video_label"));
         video_label->setGeometry(QRect(0, 30, 600, 340));
-        video_label->setStyleSheet(QString::fromUtf8(""));
+        video_label->setAutoFillBackground(true);
+        video_label->setStyleSheet(QString::fromUtf8("background-image: url(:/images/icon/background.jpg);"));
         video_label->setPixmap(QPixmap(QString::fromUtf8(":/images/icon/In Time_3262251001518004.jpg")));
+        video_label->setScaledContents(true);
         left_label = new QLabel(Widget);
         left_label->setObjectName(QString::fromUtf8("left_label"));
         left_label->setGeometry(QRect(600, 30, 200, 570));
@@ -62,6 +64,7 @@ public:
         play = new QPushButton(Widget);
         play->setObjectName(QString::fromUtf8("play"));
         play->setGeometry(QRect(100, 370, 32, 32));
+        play->setMouseTracking(false);
         play->setStyleSheet(QString::fromUtf8("border-image: url(:/images/icon/start.png);\n"
 "selection-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));"));
         QIcon icon;
@@ -89,6 +92,7 @@ public:
         next = new QPushButton(Widget);
         next->setObjectName(QString::fromUtf8("next"));
         next->setGeometry(QRect(180, 370, 32, 32));
+        next->setMouseTracking(false);
         next->setStyleSheet(QString::fromUtf8("border-image: url(:/images/icon/sound.png);"));
         QIcon icon3;
         icon3.addFile(QString::fromUtf8(":/images/icon/next.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -130,15 +134,16 @@ public:
         sound = new QPushButton(Widget);
         sound->setObjectName(QString::fromUtf8("sound"));
         sound->setGeometry(QRect(260, 370, 32, 32));
+        sound->setMouseTracking(false);
         sound->setStyleSheet(QString::fromUtf8("border-image: url(:/images/icon/stop.png);"));
         QIcon icon7;
         icon7.addFile(QString::fromUtf8(":/images/icon/sound.png"), QSize(), QIcon::Normal, QIcon::Off);
         sound->setIcon(icon7);
         sound->setIconSize(QSize(32, 32));
-        progress_Slider = new QSlider(Widget);
-        progress_Slider->setObjectName(QString::fromUtf8("progress_Slider"));
-        progress_Slider->setGeometry(QRect(0, 350, 601, 21));
-        progress_Slider->setOrientation(Qt::Horizontal);
+        progress = new QSlider(Widget);
+        progress->setObjectName(QString::fromUtf8("progress"));
+        progress->setGeometry(QRect(0, 360, 600, 10));
+        progress->setOrientation(Qt::Horizontal);
 
         retranslateUi(Widget);
 
@@ -148,7 +153,7 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QApplication::translate("Widget", "Widget", 0, QApplication::UnicodeUTF8));
-        adlabel->setText(QApplication::translate("Widget", "                                                          ads", 0, QApplication::UnicodeUTF8));
+        adlabel->setText(QString());
         video_label->setText(QString());
         left_label->setText(QString());
         play->setText(QString());

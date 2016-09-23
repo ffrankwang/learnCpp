@@ -50,7 +50,9 @@ private slots:
     void timer_slot();
 
     void play_timer_slot();
-    void proc_read_pos_slot();
+    void proc_read_proc_slot();
+    void on_progress_sliderMoved(int position);
+
 private:
     Ui::Widget *ui;
     QProcess *proc;
@@ -64,6 +66,7 @@ private:
     QTimer timer;
     QTimer play_timer;
     int pos;
+    int music_len;
     QString adStr;
 };
 
