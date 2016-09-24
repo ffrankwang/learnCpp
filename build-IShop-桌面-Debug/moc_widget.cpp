@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'widget.h'
 **
-** Created: Fri Sep 23 17:07:41 2016
+** Created: Sat Sep 24 21:02:55 2016
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Widget[] = {
        4,       // revision
        0,       // classname
        0,    0, // classinfo
-      15,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -46,6 +46,8 @@ static const uint qt_meta_data_Widget[] = {
      270,    7,    7,    7, 0x08,
      288,    7,    7,    7, 0x08,
      319,  310,    7,    7, 0x08,
+     348,    7,    7,    7, 0x08,
+     373,    7,    7,    7, 0x08,
 
        0        // eod
 };
@@ -61,6 +63,7 @@ static const char qt_meta_stringdata_Widget[] = {
     "recv_image_slot(char*,int)\0timer_slot()\0"
     "play_timer_slot()\0proc_read_proc_slot()\0"
     "position\0on_progress_sliderMoved(int)\0"
+    "on_full_screen_clicked()\0on_sound_clicked()\0"
 };
 
 const QMetaObject Widget::staticMetaObject = {
@@ -107,9 +110,11 @@ int Widget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 12: play_timer_slot(); break;
         case 13: proc_read_proc_slot(); break;
         case 14: on_progress_sliderMoved((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 15: on_full_screen_clicked(); break;
+        case 16: on_sound_clicked(); break;
         default: ;
         }
-        _id -= 15;
+        _id -= 17;
     }
     return _id;
 }

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'widget.ui'
 **
-** Created: Fri Sep 23 16:37:51 2016
+** Created: Sat Sep 24 18:55:02 2016
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -39,6 +39,9 @@ public:
     QLabel *monitorLabel;
     QPushButton *sound;
     QSlider *progress;
+    QPushButton *full_screen;
+    QLabel *left_label_2;
+    QLabel *music_info_label;
 
     void setupUi(QWidget *Widget)
     {
@@ -53,13 +56,13 @@ public:
         video_label = new QLabel(Widget);
         video_label->setObjectName(QString::fromUtf8("video_label"));
         video_label->setGeometry(QRect(0, 30, 600, 340));
-        video_label->setAutoFillBackground(true);
+        video_label->setAutoFillBackground(false);
         video_label->setStyleSheet(QString::fromUtf8("background-image: url(:/images/icon/background.jpg);"));
         video_label->setPixmap(QPixmap(QString::fromUtf8(":/images/icon/In Time_3262251001518004.jpg")));
         video_label->setScaledContents(true);
         left_label = new QLabel(Widget);
         left_label->setObjectName(QString::fromUtf8("left_label"));
-        left_label->setGeometry(QRect(600, 30, 200, 570));
+        left_label->setGeometry(QRect(600, 179, 200, 421));
         left_label->setStyleSheet(QString::fromUtf8("background-color: rgb(170, 170, 255);"));
         play = new QPushButton(Widget);
         play->setObjectName(QString::fromUtf8("play"));
@@ -117,11 +120,11 @@ public:
         preivous->setIconSize(QSize(32, 32));
         volume = new QSlider(Widget);
         volume->setObjectName(QString::fromUtf8("volume"));
-        volume->setGeometry(QRect(300, 380, 160, 19));
+        volume->setGeometry(QRect(300, 375, 121, 19));
         volume->setOrientation(Qt::Horizontal);
         monitor = new QPushButton(Widget);
         monitor->setObjectName(QString::fromUtf8("monitor"));
-        monitor->setGeometry(QRect(500, 370, 32, 32));
+        monitor->setGeometry(QRect(530, 370, 32, 32));
         monitor->setStyleSheet(QString::fromUtf8("border-image: url(:/images/icon/monitor.png);"));
         QIcon icon6;
         icon6.addFile(QString::fromUtf8(":/images/icon/monitor.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -144,6 +147,21 @@ public:
         progress->setObjectName(QString::fromUtf8("progress"));
         progress->setGeometry(QRect(0, 360, 600, 10));
         progress->setOrientation(Qt::Horizontal);
+        full_screen = new QPushButton(Widget);
+        full_screen->setObjectName(QString::fromUtf8("full_screen"));
+        full_screen->setGeometry(QRect(570, 370, 32, 32));
+        full_screen->setStyleSheet(QString::fromUtf8("border-image: url(:/images/icon/full_screen.png);"));
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8(":/images/icon/full_screen.png"), QSize(), QIcon::Normal, QIcon::Off);
+        full_screen->setIcon(icon8);
+        full_screen->setIconSize(QSize(32, 32));
+        left_label_2 = new QLabel(Widget);
+        left_label_2->setObjectName(QString::fromUtf8("left_label_2"));
+        left_label_2->setGeometry(QRect(0, 400, 601, 231));
+        left_label_2->setStyleSheet(QString::fromUtf8("background-color: rgb(170, 170, 255);"));
+        music_info_label = new QLabel(Widget);
+        music_info_label->setObjectName(QString::fromUtf8("music_info_label"));
+        music_info_label->setGeometry(QRect(440, 372, 81, 20));
 
         retranslateUi(Widget);
 
@@ -155,7 +173,7 @@ public:
         Widget->setWindowTitle(QApplication::translate("Widget", "Widget", 0, QApplication::UnicodeUTF8));
         adlabel->setText(QString());
         video_label->setText(QString());
-        left_label->setText(QString());
+        left_label->setText(QApplication::translate("Widget", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt;\">\345\271\277\345\221\212\345\225\206\345\223\201\345\210\227\350\241\250</span></p><p align=\"center\"><span style=\" font-size:14pt; font-weight:600; color:#ff0000;\">\345\244\247\347\231\275\345\205\224\345\245\266\347\263\226 \347\211\271\344\273\267\344\274\230\346\203\240</span></p><p align=\"center\"><span style=\" font-size:14pt; font-weight:600; color:#ff0000;\">\344\271\214\351\276\231\350\214\266 3\345\205\203</span></p><p align=\"center\"><span style=\" font-size:14pt; font-weight:600; color:#ff0000;\">\344\270\212\345\245\275\344\275\263\346\260\264\346\236\234\347\263\226 4\345\205\203</span></p><p align=\"center\"><span style=\" font-size:14pt; font-weight:600; color:#ff0000;\">\351\224\241\345\261\261\347\211\271\351\273\204 7\345\205\203</span></p><p><br/></p><p><br/></p><p><br/></p></body></html>", 0, QApplication::UnicodeUTF8));
         play->setText(QString());
         forward->setText(QString());
         stop->setText(QString());
@@ -163,8 +181,11 @@ public:
         backward->setText(QString());
         preivous->setText(QString());
         monitor->setText(QString());
-        monitorLabel->setText(QString());
+        monitorLabel->setText(QApplication::translate("Widget", "             \350\247\206\351\242\221\347\233\221\346\216\247\345\214\272\345\237\237", 0, QApplication::UnicodeUTF8));
         sound->setText(QString());
+        full_screen->setText(QString());
+        left_label_2->setText(QApplication::translate("Widget", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt;\">\345\271\277\345\221\212\345\225\206\345\223\201\345\210\227\350\241\250</span></p><p align=\"center\"><span style=\" font-size:14pt; font-weight:600; color:#ff0000;\">\345\244\247\347\231\275\345\205\224\345\245\266\347\263\226 \347\211\271\344\273\267\344\274\230\346\203\240</span></p><p align=\"center\"><span style=\" font-size:14pt; font-weight:600; color:#ff0000;\">\344\271\214\351\276\231\350\214\266 3\345\205\203</span></p><p align=\"center\"><span style=\" font-size:14pt; font-weight:600; color:#ff0000;\">\344\270\212\345\245\275\344\275\263\346\260\264\346\236\234\347\263\226 4\345\205\203</span></p><p align=\"center\"><span style=\" font-size:14pt; font-weight:600; color:#ff0000;\">\351\224\241\345\261\261\347\211\271\351\273\204 7\345\205\203</span></p><p><br/></p><p><br/></p><p><br/></p></body></html>", 0, QApplication::UnicodeUTF8));
+        music_info_label->setText(QString());
     } // retranslateUi
 
 };

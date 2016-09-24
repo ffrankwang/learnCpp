@@ -53,7 +53,13 @@ private slots:
     void proc_read_proc_slot();
     void on_progress_sliderMoved(int position);
 
+    void on_full_screen_clicked();
+
+    void on_sound_clicked();
+
 private:
+    QRect m_geometry;
+    Qt::WindowFlags m_windowFlags;
     Ui::Widget *ui;
     QProcess *proc;
     QStringList list;
@@ -67,7 +73,10 @@ private:
     QTimer play_timer;
     int pos;
     int music_len;
+    int cur_music_time;
+    bool mute;
     QString adStr;
+    void mouseDoubleClickEvent(QMouseEvent *e);
 };
 
 #endif // WIDGET_H

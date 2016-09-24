@@ -11,6 +11,7 @@ Widget::Widget(QWidget *parent) :
     show_List();
     cur_Num=0;
     pos=1;
+    mute=false;
     adStr="国庆大酬宾，开业五周年，打折促销，全场半价，错过今年在等一年";
     connect(&timer,SIGNAL(timeout()),this,SLOT(timer_slot()));
     timer.start(800);
@@ -23,7 +24,6 @@ Widget::Widget(QWidget *parent) :
 Widget::~Widget()
 {
     delete ui;
-    delete proc;
 }
 
 void Widget::play(){
@@ -39,7 +39,7 @@ void Widget::play(){
     if(list[cur_Num].contains("mp3")){
         pix.load(":/images/icon/background.jpg");
         ui->video_label->setPixmap(pix);
-        ui->video_label->setText("\t\t"+list[cur_Num].mid(0,list[cur_Num].length()-4));
+        ui->video_label->setText("\t\t正在播放:"+list[cur_Num].mid(0,list[cur_Num].length()-4));
     }
     args<<"-slave"<<"-quiet"<<"-zoom"<<"-wid"<<str<<"/root/frank/music/"+list[cur_Num];
     proc->start("mplayer",args);
@@ -215,6 +215,7 @@ void Widget::play_timer_slot(){
 
         proc->write("get_percent_pos \n");
         proc->write("get_time_length \n");
+        proc->write("get_time_pos \n");
     }
 
 }
@@ -233,9 +234,26 @@ void Widget::proc_read_proc_slot(){
        }
        if(strncmp("ANS_LENGTH",buf,10) == 0){//获取每首歌的时间
             p = strchr(buf,'=');
-            pos = atoi(p+1);
+            pos = atof(p+1);
            //qDebug()<<"length"<<pos;
            music_len = pos;//传给全局变量
+       }
+       if(strncmp("ANS_TIME_POSITION",buf,17) == 0){//获取每首歌的时间
+            p = strchr(buf,'=');
+            pos = atoi(p+1);
+           //qDebug()<<"length"<<pos;
+           cur_music_time = pos;//传给全局变量
+           QString minute=QString::number(cur_music_time/60);
+           QString second=QString::number(cur_music_time%60);
+           QString a_minute=QString::number(music_len/60);
+           QString a_second=QString::number(music_len%60);
+               if(second.length()<2||a_second.length()<2){
+                   if(second.length()==1&&a_second.length()==2)ui->music_info_label->setText(minute+":"+second+"/"+a_minute+":0"+a_second);
+                   if(a_second.length()==2&&second.length()==1)ui->music_info_label->setText(minute+":0"+second+"/"+a_minute+":"+a_second);
+                   if(a_second.length()==1&&second.length()==1)ui->music_info_label->setText(minute+":0"+second+"/"+a_minute+":0"+a_second);
+           }else{
+               ui->music_info_label->setText(minute+":"+second+"/"+a_minute+":"+a_second);
+               }
        }
    }
 
@@ -252,4 +270,58 @@ void Widget::on_progress_sliderMoved(int position)
     ui->progress->setValue(position);
     play_timer.start();
 
+}
+
+void Widget::on_full_screen_clicked()
+{
+     QString reg="mp4";
+     if(play_status!=1)return;
+     if(!list[cur_Num].contains(reg))return;
+     if (!isFullScreen()) {
+             m_windowFlags = windowFlags() & (Qt::Window);
+             m_geometry = geometry();
+             ui->video_label->setWindowFlags((windowFlags() | Qt::Window));
+              proc->write("vo_fullscreen \n");
+              ui->video_label->show();
+             // From Phonon::VideoWidget
+     #ifdef Q_WS_X11
+            ui->video_label-> show();
+            ui->video_label-> raise();
+            ui->video_label-> setWindowState(windowState() | Qt::WindowFullScreen);
+     #else
+            ui->video_label->setWindowState(windowState() | Qt::WindowFullScreen);
+            ui->video_label->show();
+     #endif
+         } else {
+             ui->video_label->setWindowFlags((windowFlags() ^ (Qt::Window)) | m_windowFlags);
+             ui->video_label-> setWindowState(windowState() & ~Qt::WindowFullScreen);
+             ui->video_label->setGeometry(m_geometry);
+             ui->video_label->show();
+         }
+
+}
+void Widget::mouseDoubleClickEvent(QMouseEvent *e) {
+    on_full_screen_clicked();
+  QWidget::mouseDoubleClickEvent(e);
+}
+
+void Widget::on_sound_clicked()
+{
+       QPixmap pix;
+    if(play_status!=1)return;
+    if(mute)
+    {
+        proc->write("mute 0\n");
+        mute=!mute;
+        pix.load(":/images/icon/sound.png");
+        icon.addPixmap(pix);
+        ui->sound->setIcon(icon);
+    }
+    else{
+        proc->write("mute 1\n");
+        mute=!mute;
+        pix.load(":/images/icon/mute.png");
+        icon.addPixmap(pix);
+        ui->sound->setIcon(icon);
+    }
 }

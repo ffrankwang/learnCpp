@@ -10,5 +10,7 @@
         <file>icon/previous.png</file>
         <file>icon/background.jpg</file>
         <file>icon/monitor.png</file>
+        <file>icon/full_screen.png</file>
+        <file>icon/mute.png</file>
     </qresource>
 </RCC>
