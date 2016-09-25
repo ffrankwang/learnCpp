@@ -14,10 +14,12 @@ Widget::Widget(QWidget *parent) :
     mute=false;
     adStr="国庆大酬宾，开业五周年，打折促销，全场半价，错过今年在等一年";
     connect(&timer,SIGNAL(timeout()),this,SLOT(timer_slot()));
-    timer.start(800);
+    timer.start(10);
 
     connect(&play_timer,SIGNAL(timeout()),this,SLOT(play_timer_slot()));
 
+    const char *devName = "/dev/video0";//视频文件
+        __VIDEO_Open(devName, 320, 240, V4L2_PIX_FMT_YUYV) ;
 
 }
 
@@ -36,12 +38,14 @@ void Widget::play(){
     WId id=ui->video_label->winId();
     QStringList args;
     QString str=QString::number(id);
-    if(list[cur_Num].contains("mp3")){
+    if(list.value(cur_Num).contains("mp3")){
         pix.load(":/images/icon/background.jpg");
         ui->video_label->setPixmap(pix);
-        ui->video_label->setText("\t\t正在播放:"+list[cur_Num].mid(0,list[cur_Num].length()-4));
+        ui->video_label->setText("\t\t正在播放:"+list.value(cur_Num).mid(0,list.value(cur_Num).length()-4));
+
     }
-    args<<"-slave"<<"-quiet"<<"-zoom"<<"-wid"<<str<<"/root/frank/music/"+list[cur_Num];
+   // qDebug()<<"test"<<list[cur_Num];
+    args<<"-slave"<<"-quiet"<<"-zoom"<<"-wid"<<str<<"/home/frank/music/"+list.value(cur_Num);
     proc->start("mplayer",args);
 
 
@@ -110,7 +114,7 @@ void Widget::show_List(){
     char line[1024];
     int retval;
     QFile file;
-    file.setFileName("/root/frank/music/list.txt");
+    file.setFileName("/home/frank/music/list.txt");
      file.open(QFile::ReadOnly);
      qDebug()<<"===============MusicList=====================";
      while((retval=file.readLine(line,1024))>0){
@@ -138,9 +142,9 @@ void Widget::on_next_clicked()
     }
      disconnect(proc, SIGNAL(finished(int)), this, SLOT(proc_finished(int)));//断开slot函数建立连接
     if(play_status==1||play_status==2){
+        cur_Num++;
         if(cur_Num==list.size()-1)cur_Num=0;
         on_stop_clicked();
-        cur_Num++;
         play();
     }
 }
@@ -178,17 +182,22 @@ void Widget::on_volume_sliderReleased()
 
 void Widget::on_monitor_clicked()
 {
-    thread = new VideoThread(this);
-    connect(thread,SIGNAL(recv_image(char*,int)),this,SLOT(recv_image_slot(char *, int)));
-    thread->start();
+    connect(&timer,SIGNAL(timeout()),this,SLOT(recv_image_slot()));
 
 }
-//接收图片的槽函数
-void Widget::recv_image_slot(char *img, int len){
-    QPixmap pix;
-    pix.loadFromData((uchar *)img, len);
-    ui->monitorLabel->setPixmap(pix);
-    delete []img; //释放内存
+//接收
+void Widget::recv_image_slot(){
+    FRAME_BUFFER_S frame;//定义一个frame对象，
+        int frameSize;//图像大小
+      //  __VIDEO_Open(devName, 320, 240, V4L2_PIX_FMT_YUYV);
+            frame.start = (char *)malloc(g_VideoInfo.width * g_VideoInfo.height * 3);//给抓取的图像分配内存
+            frameSize = __VIDEO_GrabFrame(&frame);//抓图
+            //窗口显示图像
+            QPixmap pix;
+            pix.loadFromData((uchar *)frame.start,frameSize);//frame.start指针指向的内存，就是图像占有的内存
+            ui->monitorLabel->setPixmap(pix);
+            free(frame.start);
+
 }
 void Widget::timer_slot()
 {
@@ -276,7 +285,7 @@ void Widget::on_full_screen_clicked()
 {
      QString reg="mp4";
      if(play_status!=1)return;
-     if(!list[cur_Num].contains(reg))return;
+     if(!list.value(cur_Num).contains(reg))return;
      if (!isFullScreen()) {
              m_windowFlags = windowFlags() & (Qt::Window);
              m_geometry = geometry();

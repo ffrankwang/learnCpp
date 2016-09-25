@@ -12,6 +12,9 @@
 #include"videothread.h"
 #include "ssocket.h"
 #include "QTimer"
+#include "jdatabuf.h"
+#include "video.h"
+#include "yuv2rgb.h"
 namespace Ui {
 class Widget;
 }
@@ -46,7 +49,7 @@ private slots:
 
 
     void on_monitor_clicked();
-    void recv_image_slot(char *, int );
+    void recv_image_slot( );
     void timer_slot();
 
     void play_timer_slot();

@@ -15,13 +15,20 @@ TEMPLATE = app
 SOURCES += main.cpp\
         widget.cpp \
     videothread.cpp \
-    ssocket.cpp
+    ssocket.cpp \
+    yuv2rgb.cpp \
+    jdatabuf.cpp \
+    video.cpp
 
 HEADERS  += widget.h \
     videothread.h \
-    ssocket.h
+    ssocket.h \
+    yuv2rgb.h \
+    jdatabuf.h \
+    video.h
 
 FORMS    += widget.ui
 
 RESOURCES += \
     resource.qrc
+LIBS+=-l jpeg
